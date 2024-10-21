@@ -1,0 +1,46 @@
+body{
+
+}
+
+#search{
+    background-color: rgb(85, 85, 85) ;
+}
+#shopping{
+    width: 60vw;
+    background-color: gray;
+    height: 300px;
+}
+#xx{
+    width: 40vw;
+    background-color: rgb(85, 85, 85) ;
+    height: 300px;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+    .container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    #xx{
+        order: 1;
+        width: 100%;
+    }
+    #shopping{
+        order: 2;
+        width: 100%;
+    }
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    
+
+}

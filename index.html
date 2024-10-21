@@ -16,13 +16,60 @@
                 <!--search icon-->
                 <link rel="icon" href="./favicon.ico" type="image/x-icon">
                 <h3>Search</h3>
-            </section>
-            
+            </section>  
         <container class="container">
-            <div id="shopping"></div>
+            <div id="shopping">
+                <div id="each-section">
+                    <h1 id="clothing-section">Title</h1>
+                    <container id="cont">
+                        <div class="item-add">
+                            <link rel="clothing-image" href="./favicon.ico" >
+                            <div id="outer">
+                                <!-- shop name and clothing-image should be changed by js-->
+                                <p id="shop-name">shop name</p>
+                                <button id="add">+</button>
+                            </div>
+                        </div>
+                        <div class="item-subtract">
+                            <link rel="clothing-image" href="./favicon.ico" >
+                            <div id="outer">
+                                <!-- shop name and clothing-image should be changed by js-->
+                                <p id="shop-name">shop name</p>
+                                <button id="subtract">-</button>
+                            </div>
+                        </div>
+                        <div class="item-advertisement">
+                            <link rel="clothing-image" href="./favicon.ico" >
+                            <div id="outer-ad">
+                                <!-- shop name and clothing-image should be changed by js-->
+                                <p id="ad">Ad</p>
+                                <button id="add">+</button>
+                            </div>
+                        </div>
+                    </container>
+                </div>
+
+
+            </div>
             <div id="xx">
+                <div class="buttons">
+                    <button id="o1">avatar</button>
+                    <button id="o2">closet</button>
+                </div>
+                <!--should be states, 100% when clocked on button-->
                 <div id="avatar"></div>
                 <div id="closet"></div>
+            </div>
+        </container>
+
+        <container>
+            <div id="bar">
+                <div id="camera">
+                    <button id="camera-bt">camera button</button>
+                    <input type="file" accept="image/*" id="camera-input" style="display: none;">
+                    <img id="preview" alt="Image Preview" style="display: none; max-width: 300px;">
+                    <button id="done-bt">done?</button>
+                </div>
             </div>
         </container>
     </main>

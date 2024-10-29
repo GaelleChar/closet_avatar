@@ -6,11 +6,25 @@ body{
 
 #search{
     background-color: rgb(142, 142, 142) ;
+    width: 50vw;
+}
+#profile{
+    background-color: gray;
+    width: 30vw; 
+    align-self: flex-end;
+    margin-left: auto;
+    display: flex;
 }
 #shopping{
     width: 60vw;
     background-color: gray;
     height: 300px;
+}
+#top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 #xx{
     width: 40vw;

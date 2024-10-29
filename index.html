@@ -11,12 +11,28 @@
   <body>
     <main>
         <h1>Welcome to My Website</h1>  
-        <container >
-            <section id="search">
+        <container id="top">
+            <container id="search">
                 <!--search icon-->
                 <link rel="icon" href="./favicon.ico" type="image/x-icon">
                 <h3>Search</h3>
-            </section>  
+            </container> 
+            <container id="profile">
+                <section class="music">
+                  <button id="playPause" data-playing="false" role="switch" aria-checked="false">
+                    <span>Play/||</span>
+                  </button>
+                  <button id="prevSong">
+                    <span>&lt;</span>
+                  </button>
+                  <button id="nextSong">
+                    <span>&gt;</span>
+                  </button>
+                  <audio src="" id="bgm" autoplay loop></audio>
+                </section>
+                <h3>Profile</h3> 
+              </container>
+        </container>
         <container class="container">
             <div id="shopping">
                 <div id="each-section">

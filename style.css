@@ -18,7 +18,7 @@ body{
 #shopping{
     width: 60vw;
     background-color: gray;
-    height: 300px;
+    height: min-content;
 }
 #top{
     display: flex;
@@ -66,6 +66,17 @@ body{
     #shopping{
         order: 2;
         width: 100%;
+    }
+
+
+}
+
+@media only screen and (max-width: 850px) {
+
+    #cont{
+        display: flex;
+        flex-direction: column;
+
     }
 
 }

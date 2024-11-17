@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Website</title>
+    <title>Closet</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
   </head>
   <body>
     <main>
-        <h1>Welcome to My Website</h1>  
         <container id="top">
             <container id="search">
-                <!--search icon-->
-                <link rel="icon" href="./favicon.ico" type="image/x-icon">
-                <h3>Search</h3>
+                
+                <button id="search-button">
+                  <!--search icon-->
+                  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+                  <h3>Search</h3>
+                
+                </button>
+                
+                
             </container> 
             <container id="profile">
                 <section class="music">
@@ -30,22 +35,51 @@
                   </button>
                   <audio src="" id="bgm" autoplay loop></audio>
                 </section>
+                <section class="darkMode" onclick=""><button>
+                  Dark
+                </button></section>
                 <h3>Profile</h3> 
               </container>
         </container>
         <container class="container">
             <div id="shopping">
+                <button id="o1">Shop</button>
+                <button id="o2">Closet</button>
                 <!-- javascript insert -->
                 
             </div>
             <div id="xx">
                 <div class="buttons">
-                    <button id="o1">avatar</button>
-                    <button id="o2">closet</button>
+                    <button id="g1">M</button>
+                    <button id="g2">F</button>
+                    <h1>Avatar</h1>
+                    
                 </div>
                 <!--should be states, 100% when clocked on button-->
-                <div id="avatar"></div>
-                <div id="closet"></div>
+                <div id="avatar">
+
+                  <div id="wheel">
+                    <main>
+                      <div id="container3D"></div>
+                    </main>
+                  </div>
+
+                  <div class="slidecontainer">
+                    <p>Bust: <span id="demo"></span></p>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <p>XXS XS S M L XL XXL <span id="demo"></span></p>
+
+                    <p>Waist: <span id="demo"></span></p>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <p>XXS XS S M L XL XXL <span id="demo"></span></p>
+
+                    <p>Hip: <span id="demo"></span></p>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <p>XXS XS S M L XL XXL <span id="demo"></span></p>
+                  </div>
+                </div>
+
+                
             </div>
         </container>
 
@@ -60,6 +94,7 @@
             </div>
         </container>
     </main>
+    <script type='module' src="3d.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -48,68 +48,106 @@ document.getElementById('camera-bt').addEventListener('click', () => {
     document.getElementById('camera-input').click();
 });
 
+
+// Server connection
+
 document.getElementById('camera-input').addEventListener('change', function(event) {
-    const file = event.target.files[0];  
+    const file = event.target.files[0];
     if (file) {
         const imageUrl = URL.createObjectURL(file);
         document.getElementById('preview').src = imageUrl;
         document.getElementById('preview').style.display = 'block';
 
         // Add done button
-        document.getElementById('done-bt').addEventListener('click', () => {
-            sendImageToGoogleLens(file);
+        document.getElementById('done-bt').addEventListener('click', async () => {
+            const resizedBlob = await resizeImage(file, 800, 800); // Resize image
+            const base64String = await fileToBase64(resizedBlob); // Convert blob to base64
+            sendImageToGoogleLens(base64String); // Send base64 string to the server
         });
     }
 });
 
-async function sendImageToGoogleLens(imageBase64) {
-  try {
-      const response = await fetch('http://localhost:5500/api/google-lens', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ image_base64: imageBase64 }), // Send in the body
-      });
+function resizeImage(file, maxWidth, maxHeight) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
 
-      console.log('Response Status:', response.status);
-      console.log('Response Headers:', response.headers.get('content-type'));
+        img.onload = () => {
+            let width = img.width;
+            let height = img.height;
 
-      if (!response.ok) {
-          const errorData = await response.json(); // Handle non-200 responses
-          console.error('Response Data:', errorData);
-          throw new Error(`Server error: ${errorData.error}`);
-      }
+            if (width > maxWidth || height > maxHeight) {
+                if (width > height) {
+                    height *= maxWidth / width;
+                    width = maxWidth;
+                } else {
+                    width *= maxHeight / height;
+                    height = maxHeight;
+                }
+            }
 
-      const data = await response.json(); // Assuming the response is JSON
-      console.log('Response Data:', data);
-  } catch (error) {
-      console.error('Error:', error);
-  }
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob((blob) => {
+                resolve(blob);
+            }, 'image/jpeg', 0.7); // Adjust quality if needed
+        };
+
+        img.onerror = reject;
+    });
 }
 
-
-
-function fileToBase64(file) {
+function fileToBase64(blob) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(blob);
         reader.onload = () => resolve(reader.result.split(',')[1]);  // Remove 'data:image/...base64,'
         reader.onerror = error => reject(error);
     });
+}
+
+async function sendImageToGoogleLens(imageBase64) {
+    try {
+        const response = await fetch('http://localhost:5500/api/google-lens', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ image_base64: imageBase64 }), // Send base64 as JSON data
+        });
+
+        console.log('Response Status:', response.status);
+        console.log('Response Headers:', response.headers.get('content-type'));
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Response Data:', errorData);
+            throw new Error(`Server error: ${errorData.error}`);
+        }
+
+        const data = await response.json();
+        console.log('Response Data:', data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 // Repeat sections
 const titles = ["Tops", "Bottoms", "Shoes"]; // Array of section titles
 let pageStates = {}; // Store the current page for each title
 const itemsPerPage = 3; // Number of items per page
-
+let tops = "tops";
+let bottoms = "bottoms";
 let items = [];
 
 for (let i = 1; i <= 9; i++) {
   items.push({
       name: `Item ${i}`,
-      img: '', 
+      img: `./closet/${bottoms}/B0.jpg`, 
       price: 'undetermined',
       type: (i % 3 === 1) ? 'ad' : '', 
       button: '+'
@@ -142,14 +180,13 @@ function createSection(title) {
     sectionDiv.innerHTML = `
         <h1 class="section-title">${title}</h1>
         <div id="cont">
-            <button onclick="prevPage('${title}')">Previous</button>       
+            <button onclick="prevPage('${title}')">&lt;</button>       
             <div class="item-add"></div>
             <div class="item-add"></div>
             <div class="item-add"></div>
-            <button onclick="nextPage('${title}')">Next</button>
+            <button onclick="nextPage('${title}')">&gt;</button>
         </div>
     `;
-
     // Append the section to the shopping div
     document.getElementById('shopping').appendChild(sectionDiv);
 
@@ -200,8 +237,6 @@ function renderItems(title) {
       container.appendChild(itemDiv);
   }
 }
-
-
 
 // Pagination functions for navigating pages within a section
 function nextPage(title) {

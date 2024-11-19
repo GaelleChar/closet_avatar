@@ -141,13 +141,15 @@ canvas{
         order: 2;
         width: 100%;
     }
-    #avatar{
-        flex-direction: column;
-    }
+    
 }
 
 @media only screen and (max-width: 850px) {
     #cont{
+        display: flex;
+        flex-direction: column;
+    }
+    #avatar{
         display: flex;
         flex-direction: column;
     }

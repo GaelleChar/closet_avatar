@@ -110,16 +110,18 @@ h1, h2{
     flex-direction: column;
 
 }
+/*
 .outer{
-
 }
+#container3D{
+}
+*/
 img{
     align-self: center;
     width: 8vw;
     height: 12vh;
 }
-#container3D{
-}
+
 canvas{
     position: relative;
 
@@ -141,6 +143,10 @@ canvas{
         order: 2;
         width: 100%;
     }
+    #avatar{
+        display: flex;
+        flex-direction: column;
+    }
     
 }
 
@@ -149,10 +155,7 @@ canvas{
         display: flex;
         flex-direction: column;
     }
-    #avatar{
-        display: flex;
-        flex-direction: column;
-    }
+    
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */

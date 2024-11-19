@@ -110,7 +110,11 @@ h1, h2{
     flex-direction: column;
 
 }
+.outer{
+
+}
 img{
+    align-self: center;
     width: 8vw;
     height: 12vh;
 }

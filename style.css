@@ -3,7 +3,7 @@ body{
     font-size: small;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background: linear-gradient( #FFD8D9 0%,#FFD8D9 40%, #E3B0B2 80%, #F4A2A4 100%);
-    height: 100vh;
+    height: 100%;
 }
 #search{   
     width: 60vw;
@@ -111,11 +111,10 @@ h1, h2{
 
 }
 img{
-    width: 170px;
-    height: 170px;
+    width: 8vw;
+    height: 12vh;
 }
 #container3D{
-/*hello*/
 }
 canvas{
     position: relative;

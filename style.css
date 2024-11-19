@@ -141,6 +141,9 @@ canvas{
         order: 2;
         width: 100%;
     }
+    #avatar{
+        flex-direction: column;
+    }
 }
 
 @media only screen and (max-width: 850px) {
